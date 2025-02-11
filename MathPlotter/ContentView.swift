@@ -31,12 +31,13 @@ struct ContentView: View {
             .chartYAxisLabel("y = \(functionString)")
             .gesture(MagnificationGesture()
                 .onChanged { value in
-                    let factor = value / scale
+                    print(value)
+                    let factor = scale * value
                     xScale = (-10.0 * factor)...(10.0 * factor)
                     yScale = (-10.0 * factor)...(10.0 * factor)
                 }
-                .onEnded { _ in
-                    scale = 1.0
+                .onEnded { value in
+                    scale *= value
                 }
             )
             
